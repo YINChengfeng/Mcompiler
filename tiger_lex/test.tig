@@ -1,0 +1,14 @@
+func tigetest(void)
+{
+	let var hehe := 35;
+	let var haha := "you guess guess!";
+	let var heha := 32.23333;
+
+	/*you guess guess what is this*/
+	if (hehe == haha)
+	then
+		print("you are heheda.\n");
+	else if (hehe < haha)
+	then
+		print("you are hahada.\n");
+}
