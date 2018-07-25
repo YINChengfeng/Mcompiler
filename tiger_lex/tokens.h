@@ -1,6 +1,7 @@
 typedef union  {
-	int   ival;
-	float fval;
+	int    ival;
+	float  fval;
+	char   cval;
 	string sval;
 } YYSTYPE;
 extern YYSTYPE yylval;
@@ -51,3 +52,4 @@ extern YYSTYPE yylval;
 # define FLOAT 300
 # define LEXPLAN 301
 # define REXPLAN 302
+# define CHAR 303

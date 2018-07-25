@@ -13,16 +13,16 @@ void adjust(void)
 }
 %}
 
-N	[0-9]+
-F   [0-9]+\.[0-9]+
+C   \'.\'
+N	(\-)?[0-9]+
+F   (\-)?[0-9]+\.[0-9]+
 D	[\_a-zA-Z][a-zA-Z0-9\_]*
 S	\"([^\\]\\\"|[^\"])*\"
 
 %%
 
-EXPLAN  {adjust(); continue;}
 \n		{adjust(); EM_newline(); continue;}
-\t		{adjust(); continue;}
+[\r\t]	{adjust(); continue;}
 " "	 	{adjust(); continue;}
 ","	 	{adjust(); return COMMA;}
 ":"	 	{adjust(); return COLON;}
@@ -66,8 +66,9 @@ nil		{adjust(); return NIL;}
 func	{adjust(); return FUNCTION;}
 var		{adjust(); return VAR;}
 type	{adjust(); return TYPE;}
-{N}		{adjust(); yylval.ival=atoi(yytext); return INT;}
-{F}		{adjust(); yylval.fval=atof(yytext); return FLOAT;}
+{C}		{adjust(); yylval.cval = *(yytext + 1); return CHAR;}
+{N}		{adjust(); yylval.ival = atoi(yytext); return INT;}
+{F}		{adjust(); yylval.fval = atof(yytext); return FLOAT;}
 {D}     {adjust(); yylval.sval = String(yytext); return ID;}
 {S}		{adjust(); yylval.sval = String(yytext); return STRING;}
 .		{adjust(); EM_error(EM_tokPos,"illegal token");}

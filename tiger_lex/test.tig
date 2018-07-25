@@ -1,8 +1,9 @@
 func tigetest(void)
 {
-	let var hehe := 35;
+	let var hehe := -35;
 	let var haha := "you guess guess!";
 	let var heha := 32.23333;
+	let var gaga := 'f';
 
 	/*you guess guess what is this*/
 	if (hehe == haha)
